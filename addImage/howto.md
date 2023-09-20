@@ -3,6 +3,7 @@
 ### This is a tutorial on how to add an Arweave asset with a glb and a txid to oncyber.
 
 
+
 Copy the code from the file called main.js inside this folder.
 
 Go in oncyber into edit mode.
@@ -18,19 +19,19 @@ Press "Ctrl + q" or click the "X" button to close the editor.
 In the editor menu select upload and upload a .glb file.
 *You can download a .glb file from this folder*
 
-Place the glb in the scene.
+Position the glb in the scene.
 
 Select the glb with your left mouse button.
 
-Press "Ctrl + e" to open the script editor on the glb.
+Press "Ctrl + e" to open the script editor.
 
-On github copy the code from the file called glb-arweave.js.
+Go to github and copy the code from the file called glb-arweave.js.
 
-Paste the code into the oncyber editor.
+Back in oncyber paste the code into the editor.
 
-In your arweave wallet copy the txid of the image you want to use.
+Go to your arweave wallet or other source to find your asset's txid.
 
-In the oncyber editor replace the txid in the code with your own txid.
+In the oncyber editor replace the current txid with the txid of your asset.
 
 Press "Ctrl + s" to save the file.
 
