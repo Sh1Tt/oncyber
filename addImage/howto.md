@@ -1,4 +1,8 @@
-###Howto###
+### Howto -- Add an Arweave asset
+
+This is a tutorial on how to add an Arweave asset with a glb and a txid to oncyber.
+
+
 Copy the code from the file called main.js inside this folder.
 
 Go in oncyber into edit mode.
