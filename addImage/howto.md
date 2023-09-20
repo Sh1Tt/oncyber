@@ -1,6 +1,6 @@
 # Howto add an Arweave asset to oncyber
 
-### This is a tutorial on how to add an asset using a glb and a txid to oncyber.
+### This is a tutorial on how to add an asset using a glb and txid.
 
 
 
