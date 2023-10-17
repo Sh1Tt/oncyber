@@ -43,7 +43,7 @@ A function to load an Arweave image into the virtual world.
 
 ---
 
-## `self.on('update', _d => { ... })`
+## `self.on('update', delta => { ... })`
 
 An event listener triggered on the 'update' event. It loads the Arweave image into the virtual world when the image is not already loaded.
 
@@ -87,7 +87,7 @@ function loadImage(params) {
 };
 
 // Event listener for the 'update' event
-self.on('update', _d => {
+self.on('update', delta => {
     if (isLoaded)
         return;
 
@@ -166,7 +166,7 @@ function loadImage(params) {
     });
 };
 
-self.on('update', _d => {
+self.on('update', delta => {
     if (isLoaded)
         return;
 
