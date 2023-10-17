@@ -5,12 +5,16 @@ const settings = {
     y: 4.0,
     z: 0.0,
   },
-  defaultText: "Press \"e\" to ask me a question",
+  defaultLine: "Press \"e\" to ask me a question",
+  api: {
+    url: "https://donna.hsd.services/chatgpt?x-api-key=ush88989-ahd986t-auhcd7787-x7&q=",
+  },
 };
 
-let t = null;
-let p = "";
-let a = "";
+let 
+  t = null,
+  a = "",
+  p = "";
 
 const updateText = async props => {
   if (t) {
@@ -30,8 +34,8 @@ self.on('update', async d => {
 });
 
 const displayText = async () => {
-  const { position, defaultText } = settings;
-  const text = a === "" ? defaultText : a;
+  const { position, defaultLine } = settings;
+  const text = a === "" ? defaultLine : a;
   await updateText({ self, text, position });
 };
 
@@ -44,7 +48,7 @@ self.on('keydown', async e => {
       case k === "e":
         p = window.prompt("Prompt:");
         
-        fetch(`https://donna.hsd.services/chatgpt?x-api-key=ush88989-ahd986t-auhcd7787-x7&q=${p}`)
+        fetch(settings.api.url + p)
           .then(res => res.json())
           .then(data => {
             a = data.text;
