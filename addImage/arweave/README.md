@@ -1,6 +1,6 @@
 **JS Documentation: Arweave Image Loader**
 
-# main.js
+# Main script
 
 ---
 
@@ -28,7 +28,7 @@ A utility function that converts radians to degrees.
 
 ---
 
-### `loadImage(params)`
+### `loadImage(props)`
 
 A function to load an Arweave image into the virtual world.
 
@@ -43,7 +43,7 @@ A function to load an Arweave image into the virtual world.
 
 ---
 
-### `self.on('update', _d => { ... })`
+### `self.on('update', delta => { ... })`
 
 An event listener triggered on the 'update' event. It loads the Arweave image into the virtual world when the image is not already loaded.
 
@@ -71,8 +71,8 @@ let isLoaded = false;
 function deg(r) { return r * 180 / Math.PI };
 
 // Function to load Arweave image into the virtual world
-function loadImage(params) {
-    const { txid, gateway_url, scaledown, color, position, rotation, size } = params;
+function loadImage(props) {
+    const { txid, gateway_url, scaledown, color, position, rotation, size } = props;
     const url = `${gateway_url}/${txid}`;
 
     world.addImage({
@@ -87,7 +87,7 @@ function loadImage(params) {
 };
 
 // Event listener for the 'update' event
-self.on('update', _d => {
+self.on('update', delta => {
     if (isLoaded)
         return;
 
@@ -105,13 +105,11 @@ self.on('update', _d => {
     });
 });
 ```
-
-```
-**JS Documentation: Arweave Image Loader in GLB Frame**
+###
 
 ---
 
-### GLB Script loader:
+# Asset script (.glb)
 
 This script facilitates the loading of a single image from Arweave and placing it on a GLB (glTF Binary) frame within the virtual world. Follow the instructions to integrate the script into your oncyber space and customize the settings to meet your specific needs.
 
@@ -132,7 +130,7 @@ This script facilitates the loading of a single image from Arweave and placing i
 4. **Adjust Settings:**
    - Customize the settings object according to your preferences. Adjust the `txid`, `gateway_url`, `scaledown`, `color`, and `size` parameters as needed.
 
----
+
 
 ### Script Details:
 
@@ -153,8 +151,8 @@ let isLoaded = false;
 
 function deg(r) { return r * 180 / Math.PI };
 
-function loadImage(params) {
-    const { txid, gateway_url, scaledown, color, position, rotation, size } = params;
+function loadImage(props) {
+    const { txid, gateway_url, scaledown, color, position, rotation, size } = props;
     const url = `${gateway_url}/${txid}`;
 
     world.addImage({
@@ -168,7 +166,7 @@ function loadImage(params) {
     });
 };
 
-self.on('update', _d => {
+self.on('update', delta => {
     if (isLoaded)
         return;
 
@@ -186,11 +184,8 @@ self.on('update', _d => {
 });
 ```
 
-```javascript
-// Settings object
-
 # bulk load and placement of images
 
-*Currently an example is available, yet it is depricated to my flavor of writing code. I will refactor it soon.*
+**Currently an example is available called one-for-all.js. Yet, it is depricated to my flavor and oncyber specific style of writing. I will refactor it soon and add it to the readme**
 
 ---
