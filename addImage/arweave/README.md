@@ -184,9 +184,6 @@ self.on('update', delta => {
 });
 ```
 
-```javascript
-// Settings object
-
 # bulk load and placement of images
 
 **Currently an example is available called one-for-all.js. Yet, it is depricated to my flavor and oncyber specific style of writing. I will refactor it soon and add it to the readme**
