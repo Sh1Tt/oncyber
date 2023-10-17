@@ -1,10 +1,10 @@
 **JS Documentation: Arweave Image Loader**
 
-### Main script
+# Main script
 
 ---
 
-## `settings`
+### `settings`
 
 An object containing configuration settings for loading an Arweave image.
 
@@ -16,19 +16,19 @@ An object containing configuration settings for loading an Arweave image.
 
 ---
 
-## `isLoaded`
+### `isLoaded`
 
 A flag indicating whether the image has already been loaded to avoid duplicate loading.
 
 ---
 
-## `deg(r)`
+### `deg(r)`
 
 A utility function that converts radians to degrees.
 
 ---
 
-## `loadImage(params)`
+### `loadImage(params)`
 
 A function to load an Arweave image into the virtual world.
 
@@ -43,7 +43,7 @@ A function to load an Arweave image into the virtual world.
 
 ---
 
-## `self.on('update', delta => { ... })`
+### `self.on('update', delta => { ... })`
 
 An event listener triggered on the 'update' event. It loads the Arweave image into the virtual world when the image is not already loaded.
 
@@ -53,7 +53,7 @@ An event listener triggered on the 'update' event. It loads the Arweave image in
 
 ---
 
-## Example Usage:
+### Example Usage:
 
 ```javascript
 // Initialize settings for Arweave image loading
@@ -105,11 +105,11 @@ self.on('update', delta => {
     });
 });
 ```
-##
+###
 
 ---
 
-### Asset script (.glb)
+# Asset script (.glb)
 
 This script facilitates the loading of a single image from Arweave and placing it on a GLB (glTF Binary) frame within the virtual world. Follow the instructions to integrate the script into your oncyber space and customize the settings to meet your specific needs.
 
@@ -189,6 +189,6 @@ self.on('update', delta => {
 
 # bulk load and placement of images
 
-*Currently an example is available, yet it is depricated to my flavor of writing code. I will refactor it soon.*
+**Currently an example is available called one-for-all.js. Yet, it is depricated to my flavor and oncyber specific style of writing. I will refactor it soon and add it to the readme**
 
 ---
