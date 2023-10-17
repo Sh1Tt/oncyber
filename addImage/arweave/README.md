@@ -28,7 +28,7 @@ A utility function that converts radians to degrees.
 
 ---
 
-### `loadImage(params)`
+### `loadImage(props)`
 
 A function to load an Arweave image into the virtual world.
 
@@ -71,8 +71,8 @@ let isLoaded = false;
 function deg(r) { return r * 180 / Math.PI };
 
 // Function to load Arweave image into the virtual world
-function loadImage(params) {
-    const { txid, gateway_url, scaledown, color, position, rotation, size } = params;
+function loadImage(props) {
+    const { txid, gateway_url, scaledown, color, position, rotation, size } = props;
     const url = `${gateway_url}/${txid}`;
 
     world.addImage({
@@ -151,8 +151,8 @@ let isLoaded = false;
 
 function deg(r) { return r * 180 / Math.PI };
 
-function loadImage(params) {
-    const { txid, gateway_url, scaledown, color, position, rotation, size } = params;
+function loadImage(props) {
+    const { txid, gateway_url, scaledown, color, position, rotation, size } = props;
     const url = `${gateway_url}/${txid}`;
 
     world.addImage({
