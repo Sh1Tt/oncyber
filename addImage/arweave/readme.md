@@ -106,7 +106,7 @@ self.on('update', _d => {
 });
 ```
 
-```
+
 **JS Documentation: Arweave Image Loader in GLB Frame**
 
 ---
@@ -132,7 +132,7 @@ This script facilitates the loading of a single image from Arweave and placing i
 4. **Adjust Settings:**
    - Customize the settings object according to your preferences. Adjust the `txid`, `gateway_url`, `scaledown`, `color`, and `size` parameters as needed.
 
----
+
 
 ### Script Details:
 
