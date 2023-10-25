@@ -1,11 +1,7 @@
-const { minute, second } = world;
+const { minute, second, game } = world;
+
 const settings = {
     triggerDistance: 75,
-    position: {
-        x: 0.0,
-        y: 0.0,
-        z: 72.0,
-    },
     rotation: {
         x: -90,
     },
@@ -14,18 +10,18 @@ const settings = {
         z: -66.0
     },
     font: {
-        color: `#cc0000`, // red
+        position: {
+            x: 0.0,
+            y: 0.0,
+            z: 72.0,
+        },
+        color: `#cc0000`,
     },
-    key: {
-        password: "f",
-    },
-    password: 'cmVkZW1wdGlvbg==', // used btoa() to encode (use atob() to decode)
-    time: 30 * minute,
 };
 
 const content = {
     "EN": {
-        defaultText: `Press \"${settings.key.password}\" to enter the password`,
+        defaultText: `Press \"${game.key.solve}\" to enter the password`,
         timerText: `Time remaining: `,
         wrongpasswordText: `Wrong password`,
         endedText: `You have run out of time`,
@@ -33,20 +29,12 @@ const content = {
         notStartedText: `Talk to the scarecrow to start the game`,
     },
     "ES": {
-        defaultText: `Presione \"${settings.key.password}\" para ingresar la contraseña`,
+        defaultText: `Presione \"${game.key.solve}\" para ingresar la contraseña`,
         timerText: `Tiempo restante: `,
         wrongpasswordText: `Contraseña incorrecta`,
         endedText: `Se te acabó el tiempo`,
         promptText: `Ingrese la contraseña:`,
         notStartedText: `Hable con el espantapájaros para comenzar el juego`,
-    },
-    "KO": {
-        defaultText: `\"${settings.key.password}\"를 눌러 비밀번호를 입력하십시오`,
-        timerText: `남은 시간: `,
-        wrongpasswordText: `잘못된 비밀번호`,
-        endedText: `시간이 다 됐어요`,
-        promptText: `비밀번호를 입력하십시오:`,
-        notStartedText: `허수아비와 이야기를 나누어 게임을 시작하십시오`,
     },
 };
 
@@ -69,66 +57,68 @@ self.on('update', async d => {
     if (i === 2) {
         updateText({
             self,
-            text: content[world.lang].endedText,
-            position: settings.position
+            text: content[world.language].endedText,
+            position: settings.font.position
         });
         i++;
         return;
     };
 
     if (world.isStarted) {
-        const delta = settings.time - (Date.now() - world.starttime);
+        const delta = game.time - (Date.now() - world.starttime);
         const minutes = Math.floor(delta / minute);
         const seconds = Math.floor((delta - minutes * minute) / second);
         const time = `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
 
         updateText({
             self,
-            text: `${content[world.lang].defaultText}\n${content[world.lang].timerText + time}`,
-            position: settings.position
+            text: `${content[world.language].defaultText}\n${content[world.language].timerText + time}`,
+            position: settings.font.position
         });
 
         if (delta <= 0) {
             i = 2
             p = null;
         };
-
     }
     else {
         updateText({
             self,
-            text: content[world.lang].notStartedText,
-            position: settings.position
+            text: content[world.language].notStartedText,
+            position: settings.font.position
         });
     };
 });
 
-self.on('keydown', async event => {
+self.on('keydown', async e => {
     if (self.distanceToPlayer < settings.triggerDistance
     ) {
-        const k = event.key.toLowerCase();
+        const k = e.key.toLowerCase();
 
         if (world.isStarted
             && i == 1
-            && k === settings.key.password
+            && k === game.key.password
         ) {
-            const input = window.prompt(content[world.lang].promptText);
-            if (input != atob(settings.password)) {
+            const input = window.prompt(content[world.language].promptText);
+            if (input != atob(game.password)) {
                 updateText({
                     self,
-                    text: content[world.lang].wrongpasswordText,
-                    position: settings.position
+                    text: content[world.language].wrongpasswordText,
+                    position: settings.font.position
                 });
-                return;
-            };
+            }
+            else {
+                self.translateZ(settings.translate.z * -1);
+                self.translateY(settings.translate.y * -1);
+                self.rotateX(toRad(settings.rotation.x) * -1);
+                i++;
 
-            i++;
-            self.translateZ(settings.translate.z * -1);
-            self.translateY(settings.translate.y * -1);
-            self.rotateX(toRad(settings.rotation.x) * -1);
-            await self.hideText();
-            t = null;
-            world.isStarted = false;
+                await self.hideText();
+                t = null;
+
+                world.isStarted = false;
+                world.starttime = null;
+            };
         };
     };
 });
