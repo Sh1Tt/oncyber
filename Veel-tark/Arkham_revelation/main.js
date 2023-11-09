@@ -1,7 +1,11 @@
 const __game = {
     stage: {
       "1": {
-        password: "secret",
+        password: "secret-1",
+        key: "e",
+      },
+      "2": {
+        password: "secret-2",
         key: "e",
       },
     },
